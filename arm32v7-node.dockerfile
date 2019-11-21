@@ -2,7 +2,7 @@
 FROM arm32v7/node
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
-DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl supervisor && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl supervisor cron && \
 apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /crontab-ui && \
