@@ -10,7 +10,7 @@ RUN mkdir /crontab-ui && \
  touch /etc/crontabs/root && \
  chmod +x /etc/crontabs/root
 
-RUN groupadd -r runner && useradd --no-log-init -r -g runner runner
+RUN groupadd -r runner && useradd -m -u 1000 --no-log-init -g runner runner
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY . /crontab-ui
