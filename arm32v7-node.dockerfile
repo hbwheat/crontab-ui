@@ -33,5 +33,5 @@ EXPOSE $PORT
 
 USER runner
 
-CMD pm2 crontab-ui
+CMD [ "pm2-runtime", "npm", "--", "start", "contrab-ui"]
 #CMD ["supervisord", "-c", "/etc/supervisord.conf"]
