@@ -1,9 +1,9 @@
 # arm dockerfile for crontab-ui
-FROM arm32v7/node:8-slim
+FROM arm32v7/node:7.7.2-slim
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
-DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl cron  && \
-apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
+#DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl cron  && \
+#apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN mkdir /crontab-ui && \
 # mkdir /etc/crontabs && \
@@ -33,5 +33,6 @@ EXPOSE $PORT
 
 USER node
 
-CMD [ "pm2-runtime", "npm", "--", "start", "crontab-ui"]
+CMD [ "pm2-runtime", "crontab-ui", "--raw", "start"] 
+# raw or json format
 #CMD ["supervisord", "-c", "/etc/supervisord.conf"]
