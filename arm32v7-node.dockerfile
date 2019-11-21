@@ -31,7 +31,7 @@ ENV PORT 8000
 
 EXPOSE $PORT
 
-USER node
+#USER node
 
 CMD [ "pm2-runtime", "npm", "--", "start" ]
 # raw or json format
