@@ -1,5 +1,5 @@
 # arm dockerfile for crontab-ui
-FROM arm32v7/node:7.7.2-slim
+FROM arm32v7/node:8-slim
 
 #RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
 #DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl cron  && \
