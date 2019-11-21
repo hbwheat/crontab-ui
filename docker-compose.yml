@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: arm32v7-node.dockerfile
     image: local/arm32v7-crontab-ui:latest
-    network_mode:
+    networks:
       - traefiknet
     volumes:
       - ./supervisord.conf:/etc/supervisord.conf:rw
