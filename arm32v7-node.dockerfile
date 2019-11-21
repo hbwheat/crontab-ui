@@ -33,6 +33,6 @@ EXPOSE $PORT
 
 #USER node
 
-CMD [ "pm2-runtime", "npm", "--", "start" ]
+CMD [ "pm2-runtime", "crontab-ui", "--", "start" ]
 # raw or json format
 #CMD ["supervisord", "-c", "/etc/supervisord.conf"]
