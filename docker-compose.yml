@@ -10,16 +10,16 @@ services:
     network_mode:
       - traefiknet
     volumes:
-      - ./data/supervisord.conf:/etc/supervisord.conf:rw
+      - ./supervisord.conf:/etc/supervisord.conf:rw
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cron.rule=Host(`${URL0_SAN}`)"
       - "traefik.http.routers.cron.entrypoints=websecure"
-      - "traefik.http.routers.cron.service=api@internal"
+      - "traefik.http.routers.cron.service=cron@docker"
       - "traefik.http.routers.cron.tls=true"
       - "traefik.http.routers.cron.tls.certresolver=mydnschallenge"
-      - "traefik.http.middlewares.auth.basicauth.users=${CRON_LOGIN}"
-      - "traefik.http.routers.api.middlewares=auth"
+      - "traefik.http.middlewares.cronauth.basicauth.users=${CRON_LOGIN}"
+      - "traefik.http.routers.cron.middlewares=auth"
 
 networks:
   traefiknet:
