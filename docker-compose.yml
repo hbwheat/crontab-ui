@@ -17,8 +17,8 @@ services:
       - "traefik.http.routers.cron.entrypoints=websecure"
       - "traefik.http.routers.cron.tls=true"
       - "traefik.http.routers.cron.tls.certresolver=mydnschallenge"
-      - "traefik.http.middlewares.cronauth.basicauth.users=${CRON_LOGIN}"
-      - "traefik.http.routers.cron.middlewares=auth"
+      #- "traefik.http.middlewares.cronauth.basicauth.users=${CRON_LOGIN}"
+      #- "traefik.http.routers.cron.middlewares=auth"
 
 networks:
   traefiknet:
