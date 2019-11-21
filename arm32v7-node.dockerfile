@@ -10,14 +10,14 @@ apt-get clean && rm -rf /var/lib/apt/lists/*
 # touch /etc/crontabs/root && \
 # chmod +x /etc/crontabs/root
 
-RUN groupadd -r runner && useradd -m --no-log-init -g runner runner
+#RUN groupadd -r runner && useradd -m --no-log-init -g runner runner
 
 #COPY supervisord.conf /etc/supervisord.conf
 #COPY . /crontab-ui
 
 #RUN  chown -R runner:runner /crontab-ui
 
-WORKDIR /home/runner
+#WORKDIR /home/runner
 
 RUN npm install -g crontab-ui && \
 npm install -g pm2
@@ -31,7 +31,7 @@ ENV PORT 8000
 
 EXPOSE $PORT
 
-USER runner
+USER node
 
 CMD [ "pm2-runtime", "npm", "--", "start", "contrab-ui"]
 #CMD ["supervisord", "-c", "/etc/supervisord.conf"]
