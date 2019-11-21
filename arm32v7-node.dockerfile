@@ -17,6 +17,8 @@ COPY . /crontab-ui
 
 RUN  chown -R runner:runner /crontab-ui
 
+USER runner
+
 WORKDIR /crontab-ui
 
 RUN npm install
@@ -29,7 +31,5 @@ ENV CRON_PATH /etc/crontabs
 ENV CRON_IN_DOCKER true
 
 EXPOSE $PORT
-
-USER runner
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
