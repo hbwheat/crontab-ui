@@ -15,8 +15,7 @@ RUN groupadd -r runner && useradd --no-log-init -r -g runner runner
 COPY supervisord.conf /etc/supervisord.conf
 COPY . /crontab-ui
 
-RUN  chown -R runner:runner /crontab-ui && \ 
-chmod -R runner:runner /crontab-ui
+RUN  chown -R runner:runner /crontab-ui
 
 WORKDIR /crontab-ui
 
