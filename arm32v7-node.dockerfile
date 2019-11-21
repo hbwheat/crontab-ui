@@ -17,8 +17,6 @@ RUN groupadd -r runner && useradd -m --no-log-init -g runner runner
 
 #RUN  chown -R runner:runner /crontab-ui
 
-USER runner
-
 WORKDIR /home/runner
 
 RUN npm install -g crontab-ui && \
@@ -32,6 +30,8 @@ ENV PORT 8000
 #ENV CRON_IN_DOCKER true
 
 EXPOSE $PORT
+
+USER runner
 
 CMD pm2 crontab-ui
 #CMD ["supervisord", "-c", "/etc/supervisord.conf"]
