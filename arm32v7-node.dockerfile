@@ -2,34 +2,36 @@
 FROM arm32v7/node:8-slim
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
-DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl supervisor cron  && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl cron  && \
 apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /crontab-ui && \
- mkdir /etc/crontabs && \
- touch /etc/crontabs/root && \
- chmod +x /etc/crontabs/root
+#RUN mkdir /crontab-ui && \
+# mkdir /etc/crontabs && \
+# touch /etc/crontabs/root && \
+# chmod +x /etc/crontabs/root
 
 RUN groupadd -r runner && useradd -m --no-log-init -g runner runner
 
-COPY supervisord.conf /etc/supervisord.conf
-COPY . /crontab-ui
+#COPY supervisord.conf /etc/supervisord.conf
+#COPY . /crontab-ui
 
-RUN  chown -R runner:runner /crontab-ui
+#RUN  chown -R runner:runner /crontab-ui
 
 USER runner
 
-WORKDIR /crontab-ui
+WORKDIR /home/runner
 
-RUN npm install
+RUN npm install -g crontab-ui && \
+npm install -g pm2
 
 ENV HOST 0.0.0.0
 
 ENV PORT 8000
 
-ENV CRON_PATH /etc/crontabs
-ENV CRON_IN_DOCKER true
+#ENV CRON_PATH /etc/crontabs
+#ENV CRON_IN_DOCKER true
 
 EXPOSE $PORT
 
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+CMD pm2 crontab-ui
+#CMD ["supervisord", "-c", "/etc/supervisord.conf"]
